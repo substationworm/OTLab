@@ -10,6 +10,12 @@ The following animation illustrates the basic usage of an **OTLab** script, demo
 
 ![](OTLab-Usage.gif "OTLab basic usage")
 
+<p align="center">
+  <img src="OTLab-Usage.gif" title="OTLab basic usage">
+  <br>
+  <em>Figure 01. OTLab basic usage.</em>
+</p>
+
 ```
 Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
 
