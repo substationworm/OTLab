@@ -8,8 +8,6 @@
 
 The following animation illustrates the basic usage of an **OTLab** script, demonstrating its core functionalities:
 
-![](OTLab-Usage.gif "OTLab basic usage")
-
 <p align="center">
   <img src="OTLab-Usage.gif" title="OTLab basic usage">
   <br>
@@ -31,7 +29,7 @@ Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
 
 *Summary of case studies*:
 
-- [OTLab01]: Basics of OT-ICS Device Discovery.
-- [OTLab02]: Siemens S7 PLC Emulation.
-- [OTLab03]: Emulation of a Gas Station Control System.
-- [OTLab04]: Modbus/TCP Emulation and Register Access.
+- [OTLab01](https://github.com/substationworm/OTLab/tree/main/OTLab01): Basics of OT-ICS Device Discovery.
+- [OTLab02](https://github.com/substationworm/OTLab/tree/main/OTLab02): Siemens S7 PLC Emulation.
+- [OTLab03](https://github.com/substationworm/OTLab/tree/main/OTLab03): Emulation of a Gas Station Control System.
+- [OTLab04](https://github.com/substationworm/OTLab/tree/main/OTLab04): Modbus/TCP Emulation and Register Access.
