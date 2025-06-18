@@ -1,6 +1,6 @@
-# OTLab01
+# OTLab02
 
-![](https://raw.githubusercontent.com/substationworm/OTLab/main/OTLab-SecondHeader.png "OTLab01")
+![](https://raw.githubusercontent.com/substationworm/OTLab/main/OTLab-SecondHeader.png "OTLab02")
 
 [![Curriculum Lattes](https://img.shields.io/badge/Lattes-white)](http://lattes.cnpq.br/8846358506427099)
 [![ORCID](https://img.shields.io/badge/ORCID-grey)](https://orcid.org/0000-0002-6254-7306)
@@ -13,7 +13,7 @@
 ## 📝 Tasks
 
 > [!WARNING]
-> When using specialized search engines or Google dorks to identify Internet-exposed OT devices, **do not interact with or attempt to access any real systems**. The tasks in this document are strictly educational, observational, and non-intrusive, and must fully comply with ethical and legal standards.
+> The tasks in this document are strictly educational, observational, and non-intrusive, and must fully comply with ethical and legal standards.
 
 - [ ] Verify the IP address of the `otlab-student` workstation.
 - [ ] Determine the subnet range of the network where the `otlab-student` workstation is deployed.
@@ -21,12 +21,11 @@
     - *Hint: It is a PLC*.
 - [ ] Identify open ports and available services on the OT-ICS host over both TCP and UDP protocols.
 - [ ] Determine the proprietary industrial communication protocol used by the PLC.
-- [ ] Retrieve additional system information via the SNMP protocol.
-- [ ] Identify the total number of publicly accessible OT-ICS devices using the same proprietary industrial protocol as `conpot-plc` through a specialized search engine such as [Shodan](https://www.shodan.io/) or [FOFA](https://en.fofa.info/).
-- [ ] Locate a publicly exposed OT device using the same industrial protocol as `conpot-plc` through Google dorking.
+- [ ] Retrieve additional system information using vendor-specific `nmap` scripts.
+- [ ] Execute a `plcscan` on the OT-ICS device detected on the network and collect further data.
 
 > [!NOTE]
-> The `conpot-plc` is based on [Conpot](http://conpot.org/), which remaps standard protocol and service ports to non-privileged ports. Refer to the [link](https://github.com/substationworm/OTLab/blob/main/OTLab01/ConpotDefaultPorts.md) for a list of some default and remapped ports.
+> On the `otlab-student` workstation, the `plcscan` tool ([meeas/plcscan](https://github.com/meeas/plcscan)) must be executed using `python2`.
 
 ## 🔖 Nomenclature
 
@@ -35,6 +34,5 @@
 - MAC: Media access control.
 - OT: Operational technology.
 - PLC: Programmable logic controller.
-- SNMP: Simple network management protocol.
 - TCP: Transmission control protocol.
 - UDP: User datagram protocol.
