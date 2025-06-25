@@ -8,7 +8,7 @@ ews_container_name="otlab-student"
 ubuntu_image="ubuntu:22.04"
 kali_image="kalilinux/kali-rolling"
 
-lab_net="plc_lab_net"
+lab_net="plc-lab-net"
 
 # ----------------------------------------
 # Function to display the banner

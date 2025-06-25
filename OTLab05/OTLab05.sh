@@ -9,8 +9,8 @@ ews_container_name="otlab-student"
 ubuntu_image="ubuntu:22.04"
 kali_image="kalilinux/kali-rolling"
 
-lab_net01="plc01_net"
-lab_net02="plc02_net"
+lab_net01="plc01-net"
+lab_net02="plc02-net"
 
 # ----------------------------------------
 # Function to display the banner
@@ -94,9 +94,9 @@ services:
 "    client.close()" \
 "    time.sleep(10)" \
 > /client.py &&
-        echo "[CLIENT] Waiting for Modbus server..." &&
+        echo "[CLIENT] Waiting for Modbus server. . ." &&
         until nc -z 192.168.11.101 502; do sleep 2; done &&
-        echo "[CLIENT] Server is up. Starting client loop..." &&
+        echo "[CLIENT] Server is up. Starting client loop. . ." &&
         sleep 2 &&
         python3 /client.py'
 
