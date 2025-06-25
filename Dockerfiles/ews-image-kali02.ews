@@ -1,0 +1,67 @@
+# [ews-image-kali02.ews] Custom Kali Linux image for OTLab [02]
+#  _____ _____ __        _   
+# |     |_   _|  |   ___| |_ 
+# |  |  | | | |  |__| .'| . |
+# |_____| |_| |_____|__,|___|
+#
+# github.com/substationworm/OTLab
+# Author: substationworm
+# Contact: in/lffreitas-gutierres
+
+FROM kalilinux/kali-rolling
+
+LABEL maintainer="substationworm (luiz.gutierres@ufsm.br)"
+LABEL description="Custom Kali Linux image for OTLab [02]"
+
+# Avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH=$PATH:/root/.local/bin
+
+# Update and install core packages
+RUN apt update && apt upgrade -y && \
+    apt install -y --no-install-recommends \
+        openjdk-11-jre \
+        wget \
+        tightvncserver \
+        xfce4 \
+        xfce4-terminal \
+        fluxbox \
+        iputils-ping \
+        nmap \
+        net-tools \
+        netdiscover \
+        snmp \
+        python3-pip \
+        pipx \
+        git \
+        curl \
+        xauth \
+        xfonts-base \
+        xfonts-75dpi \
+        feh \
+        dbus-x11 \
+        procps \
+        iproute2 \
+        tcpdump && \
+    pipx install modbus-cli && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download ModbusPal
+RUN mkdir -p /opt/modbuspal && \
+    wget -O /opt/modbuspal/ModbusPal.jar https://sourceforge.net/projects/modbuspal/files/latest/download
+
+# Configure VNC environment
+RUN mkdir -p /root/.vnc && \
+    echo "123456" | vncpasswd -f > /root/.vnc/passwd && \
+    chmod 600 /root/.vnc/passwd && \
+    echo -e "#!/bin/bash\nxrdb $HOME/.Xresources\nstartxfce4 &\nfluxbox &\njava -jar /opt/modbuspal/ModbusPal.jar &" > /root/.vnc/xstartup && \
+    chmod +x /root/.vnc/xstartup
+
+# Default command to start the VNC server with configured GUI and keep the container alive
+CMD ["/bin/bash", "-c", "\
+vncserver -kill :1 || true && \
+rm -rf /tmp/.X1-lock /tmp/.X11-unix/X1 /root/.vnc/*:1.log /root/.vnc/*:1.pid && \
+export USER=root && \
+vncserver :1 -geometry 1024x768 -depth 24 && \
+tail -f /root/.vnc/*.log"]
