@@ -25,6 +25,16 @@ Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
   -restart   Restart previously stopped containers
 ```
 
+This repository also provides **OTLab** scripts based on custom Docker images to facilitate offline use and minimize the need for downloads. For each case study, there is a corresponding script labeled with the `-Offline` suffix in its name. To use these offline-ready scripts, the images available in the [Dockerfiles](https://github.com/substationworm/OTLab/tree/main/Dockerfiles) directory must be built locally. For instance, to build the `ews-image-ubuntu01` image, execute the following command:
+
+```
+docker build -t ews-image-ubuntu01 -f ews-image-ubuntu01.ews .
+```
+
+In this example, the current directory (`.`) serves as the build context. Ensure that all files referenced within the Dockerfile are accessible from the specified context, and adjust the paths as needed to match your local directory structure.
+
+Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substationworm/OTLab/blob/main/Dockerfiles/ThirdPartyDockerImages.md), certain third-party images must be pulled manually and saved locally to enable full offline functionality.
+
 ---
 
 *Summary of case studies*:
@@ -33,3 +43,10 @@ Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
 - [OTLab02](https://github.com/substationworm/OTLab/tree/main/OTLab02): Siemens S7 PLC Emulation.
 - [OTLab03](https://github.com/substationworm/OTLab/tree/main/OTLab03): Emulation of a Gas Station Control System.
 - [OTLab04](https://github.com/substationworm/OTLab/tree/main/OTLab04): Modbus/TCP Emulation and Register Access.
+- [OTLab05](https://github.com/substationworm/OTLab/tree/main/OTLab05): Modbus/TCP Routing Between Subnets.
+
+---
+
+**OTLab** was tested with Docker version 28.2.2 and Docker Compose version v2.36.2.
+
+🚨 Warning: Docker Compose v1 may not correctly assign the MAC addresses specified in the scripts.
