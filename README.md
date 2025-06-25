@@ -47,6 +47,6 @@ Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substat
 
 ---
 
-**OTLab** was tested with Docker version 28.2.2 and Docker Compose version v2.36.2.
+**OTLab** was tested on a host running Ubuntu 24.04.2 LTS, with Docker version 28.2.2 and Docker Compose version v2.36.2.
 
 🚨 Warning: Docker Compose v1 may not correctly assign the MAC addresses specified in the scripts.
