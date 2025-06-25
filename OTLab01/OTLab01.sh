@@ -37,7 +37,7 @@ services:
   $ot_container_name:
     image: honeynet/conpot:latest
     container_name: $ot_container_name
-    hostname: plc
+    hostname: $ot_container_name
     mac_address: 00:1C:06:94:0F:F0
     networks:
       $lab_net:
