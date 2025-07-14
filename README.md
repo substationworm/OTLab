@@ -44,6 +44,7 @@ Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substat
 - [OTLab03](https://github.com/substationworm/OTLab/tree/main/OTLab03): Emulation of a Gas Station Control System.
 - [OTLab04](https://github.com/substationworm/OTLab/tree/main/OTLab04): Modbus/TCP Emulation and Register Access.
 - [OTLab05](https://github.com/substationworm/OTLab/tree/main/OTLab05): Modbus/TCP Routing Between Subnets.
+- [OTLab06](https://github.com/substationworm/OTLab/tree/main/OTLab06): Industrial Protocols and Web Interface Exposure.
 
 ---
 
