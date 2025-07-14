@@ -116,7 +116,7 @@ services:
     privileged: true
     command: >
       sh -c '
-        echo "<html><body><h1>UFSM00741{LAPES-SCADA}</h1></body></html>" > /home/conpot/.local/lib/python3.6/site-packages/conpot-0.6.0-py3.6.egg/conpot/templates/default/http/htdocs/index.html &&
+        echo "<html><body><h1>OTLab06{LAPES-SCADA}</h1></body></html>" > /home/conpot/.local/lib/python3.6/site-packages/conpot-0.6.0-py3.6.egg/conpot/templates/default/http/htdocs/index.html &&
         /home/conpot/.local/bin/conpot -f --template default
       '
 
