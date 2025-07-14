@@ -28,6 +28,7 @@ RUN apt update && apt upgrade -y && \
         python2 \
         git \
         ca-certificates \
+        curl \
         wget \
         tcpdump \
         iproute2 \
