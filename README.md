@@ -45,6 +45,7 @@ Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substat
 - [OTLab04](https://github.com/substationworm/OTLab/tree/main/OTLab04): Modbus/TCP Emulation and Register Access.
 - [OTLab05](https://github.com/substationworm/OTLab/tree/main/OTLab05): Modbus/TCP Routing Between Subnets.
 - [OTLab06](https://github.com/substationworm/OTLab/tree/main/OTLab06): Industrial Protocols and Web Interface Exposure.
+- [OTLab07](https://github.com/substationworm/OTLab/tree/main/OTLab07): Default Password Exposure.
 
 ---
 
