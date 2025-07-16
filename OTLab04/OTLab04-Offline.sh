@@ -3,7 +3,6 @@
 lab_name="OTLab04"
 compose_file="${lab_name}.yml"
 
-# ot_container_name="gas-station"
 ews_container_name="otlab-student"
 ubuntu_image="ews-image-ubuntu02"
 kali_image="ews-image-kali02"
