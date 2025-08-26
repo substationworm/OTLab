@@ -46,6 +46,7 @@ Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substat
 - [OTLab05](https://github.com/substationworm/OTLab/tree/main/OTLab05): Modbus/TCP Routing Between Subnets.
 - [OTLab06](https://github.com/substationworm/OTLab/tree/main/OTLab06): Industrial Protocols and Web Interface Exposure.
 - [OTLab07](https://github.com/substationworm/OTLab/tree/main/OTLab07): Default Password Exposure.
+- [OTLab08](https://github.com/substationworm/OTLab/tree/main/OTLab08): Subnet Masks and Segmentation.
 
 ---
 
