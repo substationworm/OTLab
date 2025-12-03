@@ -27,6 +27,7 @@ RUN apt update && apt upgrade -y && \
         fluxbox \
         iputils-ping \
         nmap \
+        masscan \
         net-tools \
         netdiscover \
         snmp \

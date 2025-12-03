@@ -1,4 +1,4 @@
-# [ews-image-kali01.ews] Custom Kali Linux image for OTLab [01]
+# [ews-image-parrot05.ews] Custom ParrotOS Linux image for OTLab [05]
 #  _____ _____ __        _   
 # |     |_   _|  |   ___| |_ 
 # |  |  | | | |  |__| .'| . |
@@ -8,10 +8,10 @@
 # Author: substationworm
 # Contact: in/lffreitas-gutierres
 
-FROM kalilinux/kali-rolling
+FROM parrotsec/core
 
 LABEL maintainer="substationworm (luiz.gutierres@ufsm.br)"
-LABEL description="Custom Kali Linux image for OTLab [01]"
+LABEL description="Custom ParrotOS Linux image for OTLab [05]"
 
 # Avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,30 +20,27 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt upgrade -y && \
     apt install -y --no-install-recommends \
         iputils-ping \
-        nmap \
-        masscan \
-        tshark \
+        iproute2 \
         net-tools \
         netdiscover \
-        snmp \
-        python2 \
-        git \
-        ca-certificates \
+        ipcalc \
+        traceroute \
+        nmap \
+        masscan \
         curl \
-        wget \
         tcpdump \
-        iproute2 \
+        arp-scan \
+        arping \
+        fping \
+        openssh-server \
+        netcat-openbsd \
+        python3 \
+        rsyslog \
+        ufw \
+        snmp \
         procps && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Clone the plcscan repository
-RUN git clone https://github.com/meeas/plcscan.git /opt/plcscan
-
-# Add the ATG-specific NSE script to the nmap script directory
-RUN mkdir -p /usr/share/nmap/scripts && \
-    wget -q -O /usr/share/nmap/scripts/atg-info.nse \
-    https://raw.githubusercontent.com/sjhilt/Nmap-NSEs/master/atg-info.nse
 
 # Default command to keep the container running
 CMD ["tail", "-f", "/dev/null"]

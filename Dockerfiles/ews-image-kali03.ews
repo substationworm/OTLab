@@ -1,4 +1,4 @@
-# [ews-image-kali01.ews] Custom Kali Linux image for OTLab [01]
+# [ews-image-kali03.ews] Custom Kali Linux image for OTLab [03]
 #  _____ _____ __        _   
 # |     |_   _|  |   ___| |_ 
 # |  |  | | | |  |__| .'| . |
@@ -11,7 +11,7 @@
 FROM kalilinux/kali-rolling
 
 LABEL maintainer="substationworm (luiz.gutierres@ufsm.br)"
-LABEL description="Custom Kali Linux image for OTLab [01]"
+LABEL description="Custom Kali Linux image for OTLab [03]"
 
 # Avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,30 +20,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt upgrade -y && \
     apt install -y --no-install-recommends \
         iputils-ping \
-        nmap \
-        masscan \
-        tshark \
-        net-tools \
-        netdiscover \
-        snmp \
-        python2 \
-        git \
-        ca-certificates \
-        curl \
-        wget \
-        tcpdump \
         iproute2 \
-        procps && \
+        net-tools \
+        ipcalc \
+        traceroute \
+        nmap \
+        masscan && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Clone the plcscan repository
-RUN git clone https://github.com/meeas/plcscan.git /opt/plcscan
-
-# Add the ATG-specific NSE script to the nmap script directory
-RUN mkdir -p /usr/share/nmap/scripts && \
-    wget -q -O /usr/share/nmap/scripts/atg-info.nse \
-    https://raw.githubusercontent.com/sjhilt/Nmap-NSEs/master/atg-info.nse
 
 # Default command to keep the container running
 CMD ["tail", "-f", "/dev/null"]

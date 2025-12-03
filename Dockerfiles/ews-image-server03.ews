@@ -1,0 +1,38 @@
+# [ews-image-server03.ews] Custom Ubuntu image for OTLab [03]
+#  _____ _____ __        _   
+# |     |_   _|  |   ___| |_ 
+# |  |  | | | |  |__| .'| . |
+# |_____| |_| |_____|__,|___|
+#
+# github.com/substationworm/OTLab
+# Author: substationworm
+# Contact: in/lffreitas-gutierres
+
+FROM ubuntu:22.04
+
+LABEL maintainer="substationworm (luiz.gutierres@ufsm.br)"
+LABEL description="Custom Ubuntu image for OTLab [03]"
+
+# Avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install core packages
+RUN apt update && apt upgrade -y && \
+    apt install -y \
+        iputils-ping \
+        iproute2 \
+        net-tools \
+        tcpdump \
+        nmap \
+        netcat-openbsd \
+        nano \
+        rsyslog \
+        iptables && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /var/log/otlab
+
+COPY Server03-Offline.sh /usr/local/bin/Server03-Offline.sh
+RUN chmod +x /usr/local/bin/Server03-Offline.sh
+
+ENTRYPOINT ["/usr/local/bin/Server03-Offline.sh"]
