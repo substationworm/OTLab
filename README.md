@@ -15,7 +15,7 @@ The following animation illustrates the basic usage of an **OTLab** script, demo
 </p>
 
 ```
-Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
+Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart | -status
 
   -start     Start the OTLab01 environment using the specified distro (default: ubuntu)
              Valid options: kali (rolling) or ubuntu (22.04)
@@ -23,6 +23,7 @@ Usage: ./OTLab01.sh -start [kali|ubuntu] | -stop | -clean | -run | -restart
   -clean     Remove containers, volumes, and network
   -stop      Stop all containers
   -restart   Restart previously stopped containers
+  -status    Show current containers status
 ```
 
 This repository also provides **OTLab** scripts based on custom Docker images to facilitate offline use and minimize the need for downloads. For each case study, there is a corresponding script labeled with the `-Offline` suffix in its name. To use these offline-ready scripts, the images available in the [Dockerfiles](https://github.com/substationworm/OTLab/tree/main/Dockerfiles) directory must be built locally. For instance, to build the `ews-image-ubuntu01` image, execute the following command:
@@ -47,6 +48,11 @@ Additionally, as outlined in [ThirdPartyDockerImages](https://github.com/substat
 - [OTLab06](https://github.com/substationworm/OTLab/tree/main/OTLab06): Industrial Protocols and Web Interface Exposure.
 - [OTLab07](https://github.com/substationworm/OTLab/tree/main/OTLab07): Default Password Exposure.
 - [OTLab08](https://github.com/substationworm/OTLab/tree/main/OTLab08): Subnet Masks and Segmentation.
+- [OTLab09](https://github.com/substationworm/OTLab/tree/main/OTLab09): Scanning Techniques with 'nmap'.
+- [OTLab10](https://github.com/substationworm/OTLab/tree/main/OTLab10): TCP/IP and Three-Way Handshake.
+- [OTLab11](https://github.com/substationworm/OTLab/tree/main/OTLab11): AiTM MFA Bypass.
+- [OTLab12](https://github.com/substationworm/OTLab/tree/main/OTLab12): Fundamental Network Topologies.
+- [OTLab13](https://github.com/substationworm/OTLab/tree/main/OTLab13): Jump Host.
 
 ---
 
