@@ -12,8 +12,8 @@ pc5_name="corp-pc5" # Segmented net B
 pc6_name="corp-pc6" # Segmented net C
 
 # Images
-kali_image="kalilinux/kali-rolling"
-ubuntu_image="ubuntu:22.04"
+kali_image="ews-image-kali03"
+ubuntu_image="ews-image-ubuntu03"
 
 # Networks
 ## Flat
@@ -36,7 +36,7 @@ show_banner() {
     echo "|_____| |_| |_____|__,|___|"
     printf "\033[1;37m" # White and bold
     printf "Exercise:  08-Subnet Masks and Segmentation\n"
-    printf "Version:   1.1\n"
+    printf "Version:   1.0-Offline\n"
     printf "Author:    substationworm\n"
     printf "Contact:   in/lffreitas-gutierres\n"
     printf "\033[0m" # Reset all styles
@@ -55,7 +55,6 @@ services:
     container_name: $pc1_name
     hostname: $pc1_name
     mac_address: 02:11:22:33:44:01
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -68,7 +67,6 @@ services:
     container_name: $pc2_name
     hostname: $pc2_name
     mac_address: 02:11:22:33:44:02
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -81,7 +79,6 @@ services:
     container_name: $pc3_name
     hostname: $pc3_name
     mac_address: 02:11:22:33:44:03
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -94,7 +91,6 @@ services:
     container_name: $pc4_name
     hostname: $pc4_name
     mac_address: 02:11:22:33:44:11
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -107,7 +103,6 @@ services:
     container_name: $pc5_name
     hostname: $pc5_name
     mac_address: 02:11:22:33:44:12
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -120,7 +115,6 @@ services:
     container_name: $pc6_name
     hostname: $pc6_name
     mac_address: 02:11:22:33:44:13
-    command: bash -c "apt update && apt install -y iputils-ping iproute2 net-tools ipcalc traceroute nmap masscan && tail -f /dev/null"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -298,6 +292,8 @@ case "$1" in
         echo "  -stop      Stop all containers"
         echo "  -restart   Restart previously stopped containers"
         echo "  -status    Show current containers status"
+        echo ""
+        echo "[i] Local images required: ews-image-kali03 and ews-image-ubuntu03"
         exit 1
         ;;
 esac
