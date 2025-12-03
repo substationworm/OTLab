@@ -4,8 +4,8 @@ lab_name="OTLab04"
 compose_file="${lab_name}.yml"
 
 ews_container_name="otlab-student"
-ubuntu_image="ews-image-ubuntu02"
 kali_image="ews-image-kali02"
+ubuntu_image="ews-image-ubuntu02"
 
 lab_net="otlab-net"
 
@@ -19,7 +19,7 @@ show_banner() {
     echo "|_____| |_| |_____|__,|___|"
     printf "\033[1;37m" # White and bold
     printf "Exercise:  04-Modbus/TCP Emulation and Register Access\n"
-    printf "Version:   1.0-Offline\n"
+    printf "Version:   1.1-Offline\n"
     printf "Author:    substationworm\n"
     printf "Contact:   in/lffreitas-gutierres\n"
     printf "\033[0m" # Reset all styles
@@ -169,9 +169,14 @@ case "$1" in
             exit 1
         fi
         ;;
+    -status)
+        show_banner
+        check_requirements
+        $DOCKER_COMPOSE_CMD -f "$compose_file" ps
+        ;;
     *)
         show_banner
-        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart"
+        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart | -status"
         echo ""
         echo "  -start     Start the $lab_name environment using the specified distro (default: ubuntu)"
         echo "             Valid options: kali (rolling) or ubuntu (22.04)"
@@ -179,6 +184,9 @@ case "$1" in
         echo "  -clean     Remove containers, volumes, and network"
         echo "  -stop      Stop all containers"
         echo "  -restart   Restart previously stopped containers"
+        echo "  -status    Show current containers status"
+        echo ""
+        echo "[i] Local images required: ews-image-kali02 and ews-image-ubuntu02"
         exit 1
         ;;
 esac
