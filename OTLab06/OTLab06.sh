@@ -8,8 +8,8 @@ ot_container_name02="plc02-master"
 ot_container_name03="plc03-scada"
 ot_container_name04="plc04-s7"
 ews_container_name="otlab-student"
-ubuntu_image="ubuntu:22.04"
 kali_image="kalilinux/kali-rolling"
+ubuntu_image="ubuntu:22.04"
 
 lab_net01="plc01-net"
 lab_net02="plc02-net"
@@ -24,7 +24,7 @@ show_banner() {
     echo "|_____| |_| |_____|__,|___|"
     printf "\033[1;37m" # White and bold
     printf "Exercise:  06-Industrial Protocols and Web Interface Exposure\n"
-    printf "Version:   1.0\n"
+    printf "Version:   1.1\n"
     printf "Author:    substationworm\n"
     printf "Contact:   in/lffreitas-gutierres\n"
     printf "\033[0m" # Reset all styles
@@ -58,9 +58,9 @@ services:
         ip route add 192.168.12.0/24 via 192.168.11.200 &&
         printf "%s\n" \
 "from pymodbus.server import StartTcpServer" \
-"from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext, ModbusSequentialDataBlock" \
-"store = ModbusSlaveContext(hr=ModbusSequentialDataBlock(0, [0]*200))" \
-"context = ModbusServerContext(slaves=store, single=True)" \
+"from pymodbus.datastore import ModbusDeviceContext, ModbusServerContext, ModbusSequentialDataBlock" \
+"store = ModbusDeviceContext(hr=ModbusSequentialDataBlock(0, [0]*200))" \
+"context = ModbusServerContext(devices=store, single=True)" \
 "StartTcpServer(context, address=(\\"0.0.0.0\\", 502))" \
 > /server.py &&
         python3 /server.py'
@@ -147,7 +147,7 @@ services:
     hostname: $ews_container_name
     command: >
       bash -c '
-        apt update && apt install -y python2 git ca-certificates iputils-ping nmap net-tools netdiscover snmp tcpdump iproute2 procps curl &&
+        apt update && apt install -y python2 git ca-certificates iputils-ping nmap masscan net-tools netdiscover snmp tcpdump iproute2 procps curl &&
         sysctl -w net.ipv4.ip_forward=1 &&
         [ -d /opt/plcscan ] || git clone https://github.com/meeas/plcscan.git /opt/plcscan &&
         tail -f /dev/null
@@ -291,16 +291,22 @@ case "$1" in
             exit 1
         fi
         ;;
+    -status)
+        show_banner
+        check_requirements
+        $DOCKER_COMPOSE_CMD -f "$compose_file" ps
+        ;;
     *)
         show_banner
-        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart"
+        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart | -status"
         echo ""
         echo "  -start     Start the $lab_name environment using the specified distro (default: ubuntu)"
         echo "             Valid options: kali (rolling) or ubuntu (22.04)"
         echo "  -run       Open a terminal inside the $ews_container_name container"
-        echo "  -clean     Remove containers, volumes, and network"
+        echo "  -clean     Remove containers, volumes, and networks"
         echo "  -stop      Stop all containers"
         echo "  -restart   Restart previously stopped containers"
+        echo "  -status    Show current containers status"
         exit 1
         ;;
 esac
