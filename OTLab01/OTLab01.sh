@@ -5,8 +5,8 @@ compose_file="${lab_name}.yml"
 
 ot_container_name="conpot-plc"
 ews_container_name="otlab-student"
-ubuntu_image="ubuntu:22.04"
 kali_image="kalilinux/kali-rolling"
+ubuntu_image="ubuntu:22.04"
 
 lab_net="plc-lab-net"
 
@@ -20,7 +20,7 @@ show_banner() {
     echo "|_____| |_| |_____|__,|___|"
     printf "\033[1;37m" # White and bold
     printf "Exercise:  01-Basics of OT-ICS Device Discovery\n"
-    printf "Version:   1.0\n"
+    printf "Version:   1.1\n"
     printf "Author:    substationworm\n"
     printf "Contact:   in/lffreitas-gutierres\n"
     printf "\033[0m" # Reset all styles
@@ -52,7 +52,7 @@ services:
     image: $ews_image
     container_name: $ews_container_name
     hostname: $ews_container_name
-    command: bash -c "apt update && apt install -y iputils-ping nmap tshark net-tools netdiscover snmp && tail -f /dev/null"
+    command: bash -c "apt update && apt install -y iputils-ping nmap masscan tshark net-tools netdiscover snmp && tail -f /dev/null"
     networks:
       $lab_net:
         ipv4_address: 172.28.1.20
@@ -183,9 +183,14 @@ case "$1" in
             exit 1
         fi
         ;;
+    -status)
+        show_banner
+        check_requirements
+        $DOCKER_COMPOSE_CMD -f "$compose_file" ps
+        ;;
     *)
         show_banner
-        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart"
+        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart | -status"
         echo ""
         echo "  -start     Start the $lab_name environment using the specified distro (default: ubuntu)"
         echo "             Valid options: kali (rolling) or ubuntu (22.04)"
@@ -193,6 +198,7 @@ case "$1" in
         echo "  -clean     Remove containers, volumes, and network"
         echo "  -stop      Stop all containers"
         echo "  -restart   Restart previously stopped containers"
+        echo "  -status    Show current containers status"
         exit 1
         ;;
 esac

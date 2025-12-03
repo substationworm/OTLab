@@ -5,8 +5,8 @@ compose_file="${lab_name}.yml"
 
 ot_container_name="conpot-plc"
 ews_container_name="otlab-student"
-ubuntu_image="ews-image-ubuntu01"
 kali_image="ews-image-kali01"
+ubuntu_image="ews-image-ubuntu01"
 
 lab_net="plc-lab-net"
 
@@ -20,7 +20,7 @@ show_banner() {
     echo "|_____| |_| |_____|__,|___|"
     printf "\033[1;37m" # White and bold
     printf "Exercise:  01-Basics of OT-ICS Device Discovery\n"
-    printf "Version:   1.0-Offline\n"
+    printf "Version:   1.1-Offline\n"
     printf "Author:    substationworm\n"
     printf "Contact:   in/lffreitas-gutierres\n"
     printf "\033[0m" # Reset all styles
@@ -182,9 +182,14 @@ case "$1" in
             exit 1
         fi
         ;;
+    -status)
+        show_banner
+        check_requirements
+        $DOCKER_COMPOSE_CMD -f "$compose_file" ps
+        ;;
     *)
         show_banner
-        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart"
+        echo "Usage: $0 -start [kali|ubuntu] | -stop | -clean | -run | -restart | -status"
         echo ""
         echo "  -start     Start the $lab_name environment using the specified distro (default: ubuntu)"
         echo "             Valid options: kali (rolling) or ubuntu (22.04)"
@@ -192,6 +197,9 @@ case "$1" in
         echo "  -clean     Remove containers, volumes, and network"
         echo "  -stop      Stop all containers"
         echo "  -restart   Restart previously stopped containers"
+        echo "  -status    Show current containers status"
+        echo ""
+        echo "[i] Local images required: ews-image-kali01 and ews-image-ubuntu01"
         exit 1
         ;;
 esac
