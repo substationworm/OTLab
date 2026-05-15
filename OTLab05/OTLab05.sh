@@ -57,7 +57,7 @@ services:
         printf "%s\n" \
 "from pymodbus.server import StartTcpServer" \
 "from pymodbus.datastore import ModbusDeviceContext, ModbusServerContext, ModbusSequentialDataBlock" \
-"store = ModbusDeviceContext(hr=ModbusSequentialDataBlock(0, [0]*200))" \
+"store = ModbusDeviceContext(hr=ModbusSequentialDataBlock(1, [0]*200))" \
 "context = ModbusServerContext(devices=store, single=True)" \
 "StartTcpServer(context, address=(\\"0.0.0.0\\", 502))" \
 > /server.py &&
@@ -89,7 +89,7 @@ services:
 "while True:" \
 "    client = ModbusTcpClient(\\"192.168.11.101\\", port=502)" \
 "    print(\\"[CLIENT] Connecting to 192.168.11.101:502\\")" \
-"    result = client.write_registers(100, [75,72,79,79,82])" \
+"    result = client.write_registers(100, [75,72,79,79,82], device_id=1)" \
 "    print(\\"[CLIENT] Response: {}\\".format(result))" \
 "    client.close()" \
 "    time.sleep(10)" \
