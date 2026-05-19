@@ -56,7 +56,7 @@ services:
         printf "%s\n" \
 "from pymodbus.server import StartTcpServer" \
 "from pymodbus.datastore import ModbusDeviceContext, ModbusServerContext, ModbusSequentialDataBlock" \
-"store = ModbusDeviceContext(hr=ModbusSequentialDataBlock(0, [0]*200))" \
+"store = ModbusDeviceContext(hr=ModbusSequentialDataBlock(1, [0]*200))" \
 "context = ModbusServerContext(devices=store, single=True)" \
 "StartTcpServer(context, address=(\\"0.0.0.0\\", 502))" \
 > /server.py &&
